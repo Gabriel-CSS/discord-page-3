@@ -3,7 +3,7 @@ var _token = localStorage.getItem("token"),
     box_registro = document.getElementsByClassName("box-registro")[0],
     box_busca = document.getElementsByClassName("box-busca")[0],
     div_entrar = document.getElementById("div-entrar"),
-    error_span = document.getElementById("error-span");
+    error_span_ = document.getElementsByClassName("error-span")[0];
 
 if (_token) {
     logar();
@@ -15,6 +15,7 @@ if (_token) {
 
 function logar() {
     box_login.className = "box-login hide";
+    box_registro.className = "box-registro hide";
     box_busca.className = "box-busca";
     div_entrar.innerHTML = "Deslogar";
     div_entrar.className = "logado";
@@ -27,7 +28,7 @@ function deslogar() {
     box_busca.className = "box-busca hide";
     div_entrar.innerHTML = "Entrar";
     div_entrar.className = "deslogado";
-    error_span.innerHTML = "";
+    error_span_.innerHTML = "";
 }
 
 function onClickEntrar() {
@@ -47,7 +48,7 @@ function validarLogin(entrada, senha) {
     var email_h5 = document.getElementsByTagName("h5")[0],
         senha_h5 = document.getElementsByTagName("h5")[1];
 
-    error_span.innerHTML = "";
+    error_span_.innerHTML = "";
     email_h5.innerHTML = "E-MAIL OU NÚMERO DE TELEFONE";
     senha_h5.innerHTML = "SENHA";
     email_h5.className = "";
@@ -78,7 +79,6 @@ document.getElementById("btn-login")
 
         var entrada = document.getElementsByClassName("input")[0].value,
             senha = document.getElementsByClassName("input")[1].value;
-        var email_h5 = document.getElementsByTagName("h5")[0];
 
         if (validarLogin(entrada, senha)) {
             var params = {
@@ -91,7 +91,7 @@ document.getElementById("btn-login")
                     if (res.status === 200) {
                         var res2 = res.data;
                         _token = res2.token;
-                        error_span.innerHTML = "Logado com sucesso. Aguarde a tela de busca...";
+                        error_span_.innerHTML = "Logado com sucesso. Aguarde a tela de busca...";
                         localStorage.setItem("token", _token);
                         setTimeout(function() {
                             logar();
@@ -104,8 +104,8 @@ document.getElementById("btn-login")
                 .catch((error) => {
                     console.log(error.response.data);
                     var error_msg = error.response.data.error;
-                    email_h5.className = "error";
-                    return email_h5.innerHTML = "E-MAIL OU NÚMERO DE TELEFONE - " + error_msg;
+                    console.log(error_msg);
+                    return error_span_.innerHTML = "Erro ao logar - " + error_msg;
                 })
         }
     });

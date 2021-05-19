@@ -2,7 +2,10 @@ var box_registro = document.getElementsByClassName("box-registro")[0],
     box_login = document.getElementsByClassName("box-login")[0],
     box_busca = document.getElementsByClassName("box-busca")[0],
     div_entrar = document.getElementById("div-entrar"),
-    error_span = document.getElementById("error-span");
+    error_span = document.getElementsByClassName("error-span")[1],
+    nome_h5 = document.getElementsByTagName("h5")[2],
+    email_h5 = document.getElementsByTagName("h5")[3],
+    senha_h5 = document.getElementsByTagName("h5")[4];
 
 function registrar() {
     box_registro.className = "box-registro hide";
@@ -22,10 +25,6 @@ function hideBoxRegistro() {
 }
 
 function validarRegistro(nome, email, senha) {
-    var nome_h5 = document.getElementsByTagName("h5")[2],
-        email_h5 = document.getElementsByTagName("h5")[3],
-        senha_h5 = document.getElementsByTagName("h5")[4];
-
     error_span.innerHTML = "";
     nome_h5.innerHTML = "NOME";
     email_h5.innerHTML = "E-MAIL";
@@ -50,7 +49,7 @@ function validarRegistro(nome, email, senha) {
     }
     if (email === "" || !email.trim()) {
         email_h5.className = "error";
-        email_h5.innerHTML = "E-MAIL OU NÚMERO DE TELEFONE - Este campo é obrigatório";
+        email_h5.innerHTML = "E-MAIL - Este campo é obrigatório";
         return false;
     }
     if (nome === "" || !nome.trim()) {
@@ -61,30 +60,31 @@ function validarRegistro(nome, email, senha) {
     return true;
 }
 
-document.getElementById("btn-login") //btn-registro
+document.getElementById("btn-registro")
     .addEventListener("click", async() => {
 
-        var email = document.getElementsByClassName("input")[0].value,
-            senha = document.getElementsByClassName("input")[1].value;
-        var email_h5 = document.getElementsByTagName("h5")[0];
+        var nome = document.getElementsByClassName("input")[2].value,
+            email = document.getElementsByClassName("input")[3].value,
+            senha = document.getElementsByClassName("input")[4].value;
 
-        if (validarLogin(entrada, senha)) {
+        if (validarRegistro(nome, email, senha)) {
             var params = {
-                email: entrada,
+                nome: nome,
+                email: email,
                 password: senha
             }
 
-            axios.post('./login/', params)
+            axios.post('./register/', params)
                 .then((res) => {
                     if (res.status === 200) {
                         var res2 = res.data;
                         _token = res2.token;
-                        error_span.innerHTML = "Logado com sucesso. Aguarde a tela de busca...";
+                        error_span.innerHTML = "Registrado com sucesso. Aguarde a tela de busca...";
                         localStorage.setItem("token", _token);
                         setTimeout(function() {
-                            logar();
+                            registrar();
                             limparBusca();
-                            document.getElementsByClassName("input")[2].value = "";
+                            document.getElementsByClassName("input")[5].value = "";
                             window.location.assign("../#id-busca");
                         }, 4000);
                     }
@@ -92,8 +92,7 @@ document.getElementById("btn-login") //btn-registro
                 .catch((error) => {
                     console.log(error.response.data);
                     var error_msg = error.response.data.error;
-                    email_h5.className = "error";
-                    return email_h5.innerHTML = "E-MAIL - " + error_msg;
+                    return error_span.innerHTML = "Erro ao registrar - " + error_msg;
                 })
         }
     });

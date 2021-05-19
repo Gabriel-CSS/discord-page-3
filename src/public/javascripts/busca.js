@@ -1,5 +1,5 @@
 var btnBuscar = document.getElementById("btn-buscar"),
-    input = document.getElementsByClassName("input")[2],
+    input = document.getElementsByClassName("input")[5],
     ul = document.getElementById('ul'),
     not_found = document.getElementsByClassName("not-found")[0];
 
