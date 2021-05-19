@@ -1,63 +1,46 @@
-var _token = localStorage.getItem("token"),
+var box_registro = document.getElementsByClassName("box-registro")[0],
     box_login = document.getElementsByClassName("box-login")[0],
-    box_registro = document.getElementsByClassName("box-registro")[0],
     box_busca = document.getElementsByClassName("box-busca")[0],
     div_entrar = document.getElementById("div-entrar"),
     error_span = document.getElementById("error-span");
 
-if (_token) {
-    logar();
-} else {
-    deslogar();
-    box_login.className = "box-login hide";
+function registrar() {
     box_registro.className = "box-registro hide";
-}
-
-function logar() {
-    box_login.className = "box-login hide";
     box_busca.className = "box-busca";
     div_entrar.innerHTML = "Deslogar";
     div_entrar.className = "logado";
-    document.getElementsByClassName("input")[1].value = "";
+    document.getElementsByClassName("input")[4].value = "";
 }
 
-function deslogar() {
-    localStorage.removeItem("token");
-    box_login.className = "box-login";
-    box_busca.className = "box-busca hide";
-    div_entrar.innerHTML = "Entrar";
-    div_entrar.className = "deslogado";
-    error_span.innerHTML = "";
-}
-
-function onClickEntrar() {
-    if (div_entrar.className === "logado") {
-        deslogar();
-    } else {
-        box_login.className = "box-login show-box-login";
-        box_registro.className = "box-registro hide";
-    }
-}
-
-function hideBoxLogin() {
+function showBoxRegistro() {
+    box_registro.className = "box-registro show-box-registro";
     box_login.className = "box-login hide";
 }
 
-function validarLogin(entrada, senha) {
-    var email_h5 = document.getElementsByTagName("h5")[0],
-        senha_h5 = document.getElementsByTagName("h5")[1];
+function hideBoxRegistro() {
+    box_registro.className = "box-registro hide";
+}
+
+function validarRegistro(nome, email, senha) {
+    var nome_h5 = document.getElementsByTagName("h5")[2],
+        email_h5 = document.getElementsByTagName("h5")[3],
+        senha_h5 = document.getElementsByTagName("h5")[4];
 
     error_span.innerHTML = "";
-    email_h5.innerHTML = "E-MAIL OU NÚMERO DE TELEFONE";
+    nome_h5.innerHTML = "NOME";
+    email_h5.innerHTML = "E-MAIL";
     senha_h5.innerHTML = "SENHA";
+    nome_h5.className = "";
     email_h5.className = "";
     senha_h5.className = "";
 
-    if ((entrada === "" || !entrada.trim()) && (senha === "" || !senha.trim())) {
+    if ((email === "" || !email.trim()) && (senha === "" || !senha.trim()) && (nome === "" || !nome.trim())) {
         senha_h5.className = "error";
         senha_h5.innerHTML = "SENHA - Este campo é obrigatório";
         email_h5.className = "error";
-        email_h5.innerHTML = "E-MAIL OU NÚMERO DE TELEFONE - Este campo é obrigatório";
+        email_h5.innerHTML = "E-MAIL - Este campo é obrigatório";
+        nome_h5.className = "error";
+        nome_h5.innerHTML = "NOME - Este campo é obrigatório";
         return false;
     }
     if (senha === "" || !senha.trim()) {
@@ -65,18 +48,23 @@ function validarLogin(entrada, senha) {
         senha_h5.innerHTML = "SENHA - Este campo é obrigatório";
         return false;
     }
-    if (entrada === "" || !entrada.trim()) {
+    if (email === "" || !email.trim()) {
         email_h5.className = "error";
         email_h5.innerHTML = "E-MAIL OU NÚMERO DE TELEFONE - Este campo é obrigatório";
+        return false;
+    }
+    if (nome === "" || !nome.trim()) {
+        nome_h5.className = "error";
+        nome_h5.innerHTML = "NOME - Este campo é obrigatório";
         return false;
     }
     return true;
 }
 
-document.getElementById("btn-login")
+document.getElementById("btn-login") //btn-registro
     .addEventListener("click", async() => {
 
-        var entrada = document.getElementsByClassName("input")[0].value,
+        var email = document.getElementsByClassName("input")[0].value,
             senha = document.getElementsByClassName("input")[1].value;
         var email_h5 = document.getElementsByTagName("h5")[0];
 
@@ -105,7 +93,7 @@ document.getElementById("btn-login")
                     console.log(error.response.data);
                     var error_msg = error.response.data.error;
                     email_h5.className = "error";
-                    return email_h5.innerHTML = "E-MAIL OU NÚMERO DE TELEFONE - " + error_msg;
+                    return email_h5.innerHTML = "E-MAIL - " + error_msg;
                 })
         }
     });

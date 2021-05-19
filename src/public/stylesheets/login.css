@@ -1,6 +1,7 @@
 /* Tela de Login */
 
-.box-login {
+.box-login,
+.box-registro {
     width: 100%;
     height: 100vh;
     top: 0;
@@ -117,7 +118,8 @@ h5 {
     line-height: 16px;
 }
 
-#btn-login {
+#btn-login,
+#btn-registro {
     color: #fff;
     background-color: #7289da;
     font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -132,15 +134,18 @@ h5 {
     border: none;
 }
 
-#btn-login:hover {
+#btn-login:hover,
+#btn-registro:hover {
     background-color: #677bc4;
 }
 
-#btn-login:active {
+#btn-login:active,
+#btn-registro:active {
     background-color: #5b6eae;
 }
 
-#btn-login:focus {
+#btn-login:focus,
+#btn-registro:focus {
     outline: none;
 }
 

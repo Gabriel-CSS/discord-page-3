@@ -177,7 +177,7 @@
                             </button>
                             <div class="registrar">
                                 <span>Precisando de uma conta?</span>
-                                <a href="">Registre-se</a>
+                                <a href="javascript:void(0)" onclick="showBoxRegistro()">Registre-se</a>
                                 <div class="cancelar">
                                     <a href="javascript:void(0)" onclick="hideBoxLogin()">
                                         Cancelar login
@@ -192,6 +192,51 @@
                         <div class="info-qrcode">
                             <span>Escaneie isto com o <strong>app móvel do Discord</strong> para fazer login
                                 imediatamente.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Registro -->
+        <div class="box-registro">
+            <div class="form-box">
+                <div class="center-box">
+                    <div class="left-box">
+                        <div class="boas-vindas">
+                            Criar uma conta
+                        </div>
+                        <div class="login-infos">
+                            <div class="login-nome">
+                                <h5>NOME</h5>
+                                <div class="div-input">
+                                    <input class="input" name="nome" type="text" aria-label="Nome">
+                                </div>
+                            </div>
+                            <div class="login-entrada">
+                                <h5>E-MAIL</h5>
+                                <div class="div-input">
+                                    <input class="input" name="email" type="text" aria-label="E-mail">
+                                </div>
+                            </div>
+                            <div class="login-senha">
+                                <h5>SENHA</h5>
+                                <div class="div-input">
+                                    <input class="input" name="senha" type="password" aria-label="Senha">
+                                </div>
+                            </div>
+                            <p id="error-span"></p>
+                            <button type="submit" id="btn-login">
+                                Criar conta
+                            </button>
+                            <div class="registrar">
+                                <a href="javascript:void(0)" onclick="onClickEntrar()">Já tem uma conta?</a>
+                                <div class="cancelar">
+                                    <a href="javascript:void(0)" onclick="hideBoxRegistro()">
+                                        Cancelar registro
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -227,6 +272,7 @@
     <script src="/javascripts/script.js"></script>
     <script src="/javascripts/login.js"></script>
     <script src="/javascripts/busca.js"></script>
+    <script src="/javascripts/registro.js"></script>
 </body>
 
 </html>
