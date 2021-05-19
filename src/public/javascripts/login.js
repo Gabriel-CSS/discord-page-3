@@ -1,5 +1,3 @@
-// const url = "https://reqres.in/api/";
-const url = "https://localhost:3000/"
 var _token = localStorage.getItem("token"),
     box_login = document.getElementsByClassName("box-login")[0],
     box_busca = document.getElementsByClassName("box-busca")[0],
