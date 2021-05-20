@@ -17,6 +17,10 @@ function limparBusca() {
     not_found.className = "not-found hide";
 }
 
+function showTelaPublicar() {
+
+}
+
 async function buscar() {
     limparBusca();
 
