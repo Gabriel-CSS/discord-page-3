@@ -15,9 +15,9 @@ router.post('/', async(req, res) => {
 
     if (result) {
         req.session.login = result;
-        res.status(200).send({ token: "QpwL5tke4Pnpja7X4" });
+        return res.status(200).send({ token: "QpwL5tke4Pnpja7X4" });
     } else {
-        res.status(400).send({ error: "Este email ja existe" });
+        return res.status(400).send({ error: "Este email ja existe" });
     }
 });
 

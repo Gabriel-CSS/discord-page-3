@@ -5,6 +5,7 @@ var btnBuscar = document.getElementById("btn-buscar"),
     admin = localStorage.getItem("admin"),
     box_post = document.getElementsByClassName("box-post")[0],
     btn_post = document.getElementById('btn-post'),
+    btn_sendpost = document.getElementById('btn-send-post'),
     error_span3 = document.getElementsByClassName("error-span")[2];
 
 box_post.className = "box-post hide";
@@ -150,7 +151,7 @@ async function buscar() {
 }
 
 
-btn_post.addEventListener("click", async() => {
+btn_sendpost.addEventListener("click", async() => {
     var nome = document.getElementsByClassName("input-post")[0].value,
         estreia = document.getElementsByClassName("input-post")[1].value,
         site = document.getElementsByClassName("input-post")[2].value,
