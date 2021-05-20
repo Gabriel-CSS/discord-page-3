@@ -2,11 +2,6 @@ const { MongoClient } = require('mongodb');
 const uri = require('../config/db');
 
 module.exports = class Users {
-    static async find() {
-        const conn = await MongoClient.connect(uri.mongoURI);
-        const db = conn.db('discordDB');
-        return await db.collection('users').find().toArray();
-    }
 
     static async findOne(emails) {
         const conn = await MongoClient.connect(uri.mongoURI);
