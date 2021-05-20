@@ -1,20 +1,21 @@
 const { MongoClient } = require('mongodb');
+const uri = require('../config/db');
 
 module.exports = class Users {
     static async find() {
-        const conn = await MongoClient.connect('mongodb://localhost:27017');
+        const conn = await MongoClient.connect(uri.mongoURI);
         const db = conn.db('discordDB');
         return await db.collection('users').find().toArray();
     }
 
     static async findOne(emails) {
-        const conn = await MongoClient.connect('mongodb://localhost:27017');
+        const conn = await MongoClient.connect(uri.mongoURI);
         const db = conn.db('discordDB');
         return await db.collection('users').findOne({ email: emails });
     }
 
     static async register(nomes, emails, senhas) {
-        const conn = await MongoClient.connect('mongodb://localhost:27017');
+        const conn = await MongoClient.connect(uri.mongoURI);
         const db = conn.db('discordDB');
 
         var user = await db.collection('users').findOne({ email: emails });
@@ -25,7 +26,7 @@ module.exports = class Users {
             nome: nomes,
             email: emails,
             senha: senhas,
-            admin: false
+            admin: "false"
         });
         conn.close();
 

@@ -23,7 +23,7 @@ function logar() {
     box_busca.className = "box-busca";
     div_entrar.innerHTML = "Deslogar";
     div_entrar.className = "logado";
-    if (admin == true)
+    if (admin == "true")
         btn_post.className = "";
     else
         btn_post.className = "hide";
@@ -109,7 +109,7 @@ document.getElementById("btn-login")
                             limparBusca();
                             document.getElementsByClassName("input")[2].value = "";
                             window.location.assign("../#id-busca");
-                        }, 4000);
+                        }, 2000);
                     }
                 })
                 .catch((error) => {

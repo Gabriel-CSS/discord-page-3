@@ -1,19 +1,36 @@
 var express = require('express');
 var router = express.Router();
+let Series = require('../model/Series');
 
-router.get('/busca', function(req, res) {
+router.get('/busca', async(req, res) => {
     if (req.session.login) {
-        res.render('teste', { title: 'logado' });
+        var result = await Series.find(req.query.nome);
+        return res.status(200).send(result);
     } else {
-        res.render('teste2', { title: 'nao logado' });
+        return res.status(401).send({ error: "Usuário não logado." });
     }
 });
 
-router.get('/post', function(req, res) {
-    if (req.session.admin == 1 && req.session.login) {
-        res.render('teste', { title: 'logado e admin' });
+router.post('/post', async(req, res) => {
+    if (req.session.admin && req.session.login) {
+        let nome = req.body.nome,
+            estreia = req.body.estreia,
+            site = req.body.site,
+            genero = req.body.genero,
+            imdb = req.body.imdb,
+            emissora = req.body.emissora,
+            pais = req.body.pais,
+            sinopse = req.body.sinopse;
+
+        if (nome.length > 3) {
+            await Series.post(nome, estreia, site, genero, imdb, emissora, pais, sinopse);
+        } else {
+            return res.status(400).send({ error: "Ao menos um nome você precisa inserir para publicar alguma coisa, né?" });
+        }
+
+        return res.status(200).send({ message: "Conteudo publicado com sucesso." });
     } else {
-        res.render('teste2', { title: 'nao logado ou nao admin' });
+        return res.status(403).send({ error: "Usuário não possui permissão para publicar." });
     }
 });
 

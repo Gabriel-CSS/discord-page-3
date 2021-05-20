@@ -126,7 +126,8 @@ h5 {
 }
 
 #btn-login,
-#btn-registro {
+#btn-registro,
+#btn-send-post {
     color: #fff;
     background-color: #7289da;
     font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -142,17 +143,20 @@ h5 {
 }
 
 #btn-login:hover,
-#btn-registro:hover {
+#btn-registro:hover,
+#btn-send-post:hover {
     background-color: #677bc4;
 }
 
 #btn-login:active,
-#btn-registro:active {
+#btn-registro:active,
+#btn-send-post:active {
     background-color: #5b6eae;
 }
 
 #btn-login:focus,
-#btn-registro:focus {
+#btn-registro:focus,
+#btn-send-post:focus {
     outline: none;
 }
 
