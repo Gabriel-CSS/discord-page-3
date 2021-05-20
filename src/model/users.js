@@ -25,7 +25,7 @@ module.exports = class Users {
             nome: nomes,
             email: emails,
             senha: senhas,
-            admin: 0
+            admin: false
         });
         conn.close();
 

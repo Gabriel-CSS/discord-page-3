@@ -65,7 +65,8 @@
     float: right;
 }
 
-#btn-buscar {
+#btn-buscar,
+#btn-post {
     color: #fff;
     background-color: #7289da;
     font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -80,15 +81,23 @@
     border: none;
 }
 
-#btn-buscar:hover {
+#btn-post {
+    width: 30%;
+    background-color: #ff5f5f;
+}
+
+#btn-buscar:hover,
+#btn-post:hover {
     background-color: #677bc4;
 }
 
-#btn-buscar:active {
+#btn-buscar:active,
+#btn-post:active {
     background-color: #5b6eae;
 }
 
-#btn-buscar:focus {
+#btn-buscar:focus,
+#btn-post:focus {
     outline: none;
 }
 

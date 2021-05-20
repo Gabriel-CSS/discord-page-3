@@ -11,7 +11,7 @@ router.post('/', async(req, res) => {
         if (user.senha == senha) {
             req.session.login = user.email;
             req.session.admin = user.admin;
-            res.status(200).send({ token: "QpwL5tke4Pnpja7X4" });
+            res.status(200).send({ token: "QpwL5tke4Pnpja7X4", admin: user.admin });
         } else {
             res.status(400).send({ error: "Senha incorreta." });
         }

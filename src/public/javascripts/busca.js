@@ -1,7 +1,15 @@
 var btnBuscar = document.getElementById("btn-buscar"),
     input = document.getElementsByClassName("input")[5],
     ul = document.getElementById('ul'),
-    not_found = document.getElementsByClassName("not-found")[0];
+    not_found = document.getElementsByClassName("not-found")[0],
+    admin = localStorage.getItem("admin"),
+    btn_post = document.getElementById('btn-post');
+
+if (admin == true)
+    btn_post.className = "";
+else
+    btn_post.className = "hide";
+
 
 function limparBusca() {
     ul.innerHTML = "";

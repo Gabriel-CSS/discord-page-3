@@ -1,9 +1,11 @@
 var _token = localStorage.getItem("token"),
+    admin = localStorage.getItem("admin"),
     box_login = document.getElementsByClassName("box-login")[0],
     box_registro = document.getElementsByClassName("box-registro")[0],
     box_busca = document.getElementsByClassName("box-busca")[0],
     div_entrar = document.getElementById("div-entrar"),
-    error_span_ = document.getElementsByClassName("error-span")[0];
+    error_span_ = document.getElementsByClassName("error-span")[0],
+    btn_post = document.getElementById('btn-post');
 
 if (_token) {
     logar();
@@ -19,11 +21,16 @@ function logar() {
     box_busca.className = "box-busca";
     div_entrar.innerHTML = "Deslogar";
     div_entrar.className = "logado";
+    if (admin == true)
+        btn_post.className = "";
+    else
+        btn_post.className = "hide";
     document.getElementsByClassName("input")[1].value = "";
 }
 
 function deslogar() {
     localStorage.removeItem("token");
+    localStorage.removeItem("admin");
     box_login.className = "box-login";
     box_busca.className = "box-busca hide";
     div_entrar.innerHTML = "Entrar";
@@ -91,8 +98,10 @@ document.getElementById("btn-login")
                     if (res.status === 200) {
                         var res2 = res.data;
                         _token = res2.token;
+                        admin = res2.admin;
                         error_span_.innerHTML = "Logado com sucesso. Aguarde a tela de busca...";
                         localStorage.setItem("token", _token);
+                        localStorage.setItem("admin", admin);
                         setTimeout(function() {
                             logar();
                             limparBusca();
@@ -104,7 +113,6 @@ document.getElementById("btn-login")
                 .catch((error) => {
                     console.log(error.response.data);
                     var error_msg = error.response.data.error;
-                    console.log(error_msg);
                     return error_span_.innerHTML = "Erro ao logar - " + error_msg;
                 })
         }
