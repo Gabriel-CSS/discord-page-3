@@ -95,7 +95,7 @@ document.getElementById("btn-login")
                 password: senha
             }
 
-            axios.post('./login/', params)
+            await axios.post('./login/', params)
                 .then((res) => {
                     if (res.status === 200) {
                         var res2 = res.data;
