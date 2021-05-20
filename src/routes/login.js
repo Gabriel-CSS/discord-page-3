@@ -6,13 +6,17 @@ router.post('/', async(req, res) => {
     let email = req.body.email,
         senha = req.body.password;
 
-    var result = await Users.login(email, senha);
-
-    if (result) {
-        req.session.login = result;
-        res.status(200).send({ token: "QpwL5tke4Pnpja7X4" });
+    var user = await Users.findOne(email);
+    if (user) {
+        if (user.senha == senha) {
+            req.session.login = user.email;
+            req.session.admin = user.admin;
+            res.status(200).send({ token: "QpwL5tke4Pnpja7X4" });
+        } else {
+            res.status(400).send({ error: "Senha incorreta." });
+        }
     } else {
-        res.status(400).send({ error: "Login failed" });
+        res.status(404).send({ error: "Usuario nao encontrado." });
     }
 });
 

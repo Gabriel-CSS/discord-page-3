@@ -8,8 +8,6 @@ router.post('/', async(req, res) => {
         email = req.body.email,
         senha = req.body.password;
 
-    console.log("/register");
-
     if (await Validator.registerValidator(nome, email, senha))
         var result = await Users.register(nome, email, senha);
     else
