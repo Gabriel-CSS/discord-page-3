@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-let Users = require('../model/Users');
+let Users = require('../model/User');
 let Validator = require('../model/validator');
 
 router.post('/', async(req, res) => {

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-let Users = require('../model/Users');
+let Users = require('../model/User');
 
 router.post('/', async(req, res) => {
     let email = req.body.email,
