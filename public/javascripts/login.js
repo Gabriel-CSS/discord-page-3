@@ -7,6 +7,8 @@ var _token = localStorage.getItem("token"),
     error_span_ = document.getElementsByClassName("error-span")[0],
     btn_post = document.getElementById('btn-post');
 
+btn_post.className = "";
+
 if (_token) {
     logar();
 } else {

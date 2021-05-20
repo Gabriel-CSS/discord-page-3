@@ -3,9 +3,12 @@ var btnBuscar = document.getElementById("btn-buscar"),
     ul = document.getElementById('ul'),
     not_found = document.getElementsByClassName("not-found")[0],
     admin = localStorage.getItem("admin"),
+    box_post = document.getElementsByClassName("box-post")[0],
     btn_post = document.getElementById('btn-post');
 
-if (admin == true)
+box_post.className = "box-post hide";
+
+if (admin == "true")
     btn_post.className = "";
 else
     btn_post.className = "hide";
@@ -18,7 +21,11 @@ function limparBusca() {
 }
 
 function showTelaPublicar() {
+    box_post.className = "box-post";
+}
 
+function hideTelaPublicar() {
+    box_post.className = "box-post hide";
 }
 
 async function buscar() {

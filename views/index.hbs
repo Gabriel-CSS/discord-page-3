@@ -160,7 +160,7 @@
                             <div class="login-entrada">
                                 <h5>E-MAIL OU NÚMERO DE TELEFONE</h5>
                                 <div class="div-input">
-                                    <input class="input" name="email" type="text" aria-label="E-mail ou número de telefone">
+                                    <input class="input" name="email" type="email" aria-label="E-mail ou número de telefone">
                                 </div>
                             </div>
                             <div class="login-senha">
@@ -206,7 +206,7 @@
                             Criar uma conta
                         </div>
                         <div class="login-infos">
-                            <div class="login-nome">
+                            <div class="login-entrada">
                                 <h5>NOME</h5>
                                 <div class="div-input">
                                     <input class="input" name="nome" type="text" aria-label="Nome">
@@ -215,10 +215,10 @@
                             <div class="login-entrada">
                                 <h5>E-MAIL</h5>
                                 <div class="div-input">
-                                    <input class="input" name="email" type="text" aria-label="E-mail">
+                                    <input class="input" name="email" type="email" aria-label="E-mail">
                                 </div>
                             </div>
-                            <div class="login-senha">
+                            <div class="login-entrada">
                                 <h5>SENHA</h5>
                                 <div class="div-input">
                                     <input class="input" name="senha" type="password" aria-label="Senha">
@@ -242,6 +242,89 @@
             </div>
         </div>
 
+        {{!-- Tela de publicação de conteúdo --}}
+        <div class="box-post">
+            <div class="form-box form-box-post">
+                <div class="center-box center-box-post">
+                    <div class="left-box left-box-post">
+                        <div class="boas-vindas">
+                            Publicar novo conteúdo
+                        </div>
+                        <div class="login-infos">
+                            <div class="login-entrada">
+                                <h5>NOME DO SERIADO</h5>
+                                <div class="div-input">
+                                    <input class="input-post" name="nome" type="text" aria-label="Nome do seriado">
+                                </div>
+                            </div>
+                            <div class="login-entrada">
+                                <h5>DATA DE ESTREIA</h5>
+                                <div class="div-input">
+                                    <input class="input-post" name="estreia" type="date" aria-label="Estreia">
+                                </div>
+                            </div>
+                            <div class="login-entrada">
+                                <h5>SITE</h5>
+                                <div class="div-input">
+                                    <input class="input-post" name="site" type="url" aria-label="Site">
+                                </div>
+                            </div>
+                            <div class="login-entrada">
+                                <h5>GÊNERO</h5>
+                                <div class="div-input">
+                                    <input class="input-post" name="genero" type="text" aria-label="Gênero">
+                                </div>
+                            </div>
+                        </div>
+                        <p class="error-span"></p>
+
+                        <button type="submit" id="btn-registro">
+                            Salvar conteúdo
+                        </button>
+
+                        <div class="cancelar" style="float: none;">
+                            <a href="javascript:void(0)" onclick="hideTelaPublicar()">
+                                Cancelar publicação
+                            </a>
+                        </div>
+                    </div>
+                    <div class="right-box-post">
+                            <div class="login-entrada">
+                                <h5>IMDb RATE</h5>
+                                <div class="div-input">
+                                    <input class="input-post" name="imdb" type="text" aria-label="IMDb rate">
+                                </div>
+                            </div>
+                            <div class="login-entrada">
+                                <h5>EMISSORA</h5>
+                                <div class="div-input">
+                                    <input class="input-post" name="emissora" type="text" aria-label="Emissora">
+                                </div>
+                            </div>
+                            <div class="login-entrada">
+                                <h5>PAÍS DE ORIGEM</h5>
+                                <div class="div-input">
+                                    <input class="input-post" name="pais" type="text" aria-label="País de origem">
+                                </div>
+                            </div>
+                            <div class="login-entrada">
+                                <h5>SINOPSE</h5>
+                                <div class="div-input">
+                                    <textarea class="input-post" name="sinopse" cols="40" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="login-entrada">
+                                <h5>IMAGEM</h5>
+                                <div class="div-input">
+                                    <input type="file" id="img" name="imagem" accept="image/*" aria-label="Imagem">
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Tela de busca --}}
         <div id="id-busca" class="box-busca">
             <div class="div-busca">
                 <div class="center-busca">
