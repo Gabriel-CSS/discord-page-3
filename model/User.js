@@ -4,7 +4,7 @@ const uri = require('../config/db');
 module.exports = class Users {
 
     static async findOne(emails) {
-        const conn = await MongoClient.connect(uri.mongoURI);
+        const conn = await MongoClient.connect(uri.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
         const db = conn.db('discordDB');
         return await db.collection('users').findOne({ email: emails });
     }
