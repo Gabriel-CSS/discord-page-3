@@ -85,9 +85,9 @@ async function buscar() {
                         }
 
                         if (docs[i].genero === null) {
-                            generos.innerHTML = 'Gênero: unknown';
+                            generos.innerHTML = 'Gêneros: unknown';
                         } else {
-                            generos.innerHTML = 'Gênero: ' + docs[i].genero;
+                            generos.innerHTML = 'Gêneros: ' + docs[i].genero;
                         }
 
                         if (docs[i].estreia === null) {
@@ -150,17 +150,6 @@ async function buscar() {
         })
 }
 
-var base64Img;
-
-function convertToBase64(element) {
-    var file = element.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function() {
-        base64Img = reader.result;
-    }
-    reader.readAsDataURL(file);
-}
-
 btn_sendpost.addEventListener("click", async() => {
     var nome = document.getElementsByClassName("input-post")[0].value,
         estreia = document.getElementsByClassName("input-post")[1].value,
@@ -170,23 +159,21 @@ btn_sendpost.addEventListener("click", async() => {
         emissora = document.getElementsByClassName("input-post")[5].value,
         pais = document.getElementsByClassName("input-post")[6].value,
         sinopse = document.getElementsByClassName("input-post")[7].value,
-        imagem = base64Img;
+        imagem = document.getElementsByClassName("input-post")[8].files[0];
+
+    const formData = new FormData();
+    formData.append('nome', nome);
+    formData.append('estreia', estreia);
+    formData.append('site', site);
+    formData.append('genero', genero);
+    formData.append('imdb', imdb);
+    formData.append('emissora', emissora);
+    formData.append('pais', pais);
+    formData.append('sinopse', sinopse);
+    formData.append('imagem', imagem);
 
     if (nome.length > 3) {
-        var params = {
-            nome: nome,
-            estreia: estreia,
-            site: site,
-            estreia: estreia,
-            genero: genero,
-            imdb: imdb,
-            emissora: emissora,
-            pais: pais,
-            sinopse: sinopse,
-            imagem: imagem
-        }
-
-        await axios.post('./series/post/', params)
+        await axios.post('./series/post/', formData)
             .then((res) => {
                 if (res.status === 200) {
                     error_span3.innerHTML = "Conteudo publicado com sucesso.";

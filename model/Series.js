@@ -32,7 +32,7 @@ module.exports = class Series {
             emissora: emissora,
             pais: pais,
             sinopse: sinopse,
-            imagem
+            imagem: imagem
         });
         return conn.close();
     }
