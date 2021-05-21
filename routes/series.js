@@ -3,7 +3,8 @@ var router = express.Router();
 let Series = require('../model/Series');
 
 router.get('/busca', async(req, res) => {
-    if (req.session.login) {
+    // if (req.session.login) {
+    if (1 == 1) {
         var result = await Series.find(req.query.nome);
         return res.status(200).send(result);
     } else {
@@ -20,10 +21,11 @@ router.post('/post', async(req, res) => {
             imdb = req.body.imdb,
             emissora = req.body.emissora,
             pais = req.body.pais,
-            sinopse = req.body.sinopse;
+            sinopse = req.body.sinopse,
+            imagem = req.body.imagem;
 
         if (nome.length > 3) {
-            await Series.post(nome, estreia, site, genero, imdb, emissora, pais, sinopse);
+            await Series.post(nome, estreia, site, genero, imdb, emissora, pais, sinopse, imagem);
         } else {
             return res.status(400).send({ error: "Ao menos um nome você precisa inserir para publicar alguma coisa, né?" });
         }

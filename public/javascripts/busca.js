@@ -150,6 +150,16 @@ async function buscar() {
         })
 }
 
+var base64Img;
+
+function convertToBase64(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        base64Img = reader.result;
+    }
+    reader.readAsDataURL(file);
+}
 
 btn_sendpost.addEventListener("click", async() => {
     var nome = document.getElementsByClassName("input-post")[0].value,
@@ -159,7 +169,8 @@ btn_sendpost.addEventListener("click", async() => {
         imdb = document.getElementsByClassName("input-post")[4].value,
         emissora = document.getElementsByClassName("input-post")[5].value,
         pais = document.getElementsByClassName("input-post")[6].value,
-        sinopse = document.getElementsByClassName("input-post")[7].value;
+        sinopse = document.getElementsByClassName("input-post")[7].value,
+        imagem = base64Img;
 
     if (nome.length > 3) {
         var params = {
@@ -171,7 +182,8 @@ btn_sendpost.addEventListener("click", async() => {
             imdb: imdb,
             emissora: emissora,
             pais: pais,
-            sinopse: sinopse
+            sinopse: sinopse,
+            imagem: imagem
         }
 
         await axios.post('./series/post/', params)

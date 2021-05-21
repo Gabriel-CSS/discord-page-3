@@ -10,7 +10,7 @@ module.exports = class Users {
     }
 
     static async register(nomes, emails, senhas) {
-        const conn = await MongoClient.connect(uri.mongoURI);
+        const conn = await MongoClient.connect(uri.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
         const db = conn.db('discordDB');
 
         var user = await db.collection('users').findOne({ email: emails });

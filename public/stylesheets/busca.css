@@ -52,6 +52,7 @@
 .resultado-left img {
     border-radius: 10px;
     box-shadow: 4px 4px 4px 4px rgb(27, 27, 27);
+    width: 210px;
 }
 
 .resultado-right {
