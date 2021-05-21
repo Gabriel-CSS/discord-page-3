@@ -23,7 +23,6 @@ module.exports = class Users {
             senha: senhas,
             admin: "false"
         });
-        conn.close();
 
         return true;
     }
