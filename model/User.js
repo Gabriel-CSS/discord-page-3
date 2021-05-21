@@ -6,7 +6,9 @@ module.exports = class Users {
     static async findOne(emails) {
         const conn = await MongoClient.connect(uri.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
         const db = conn.db('discordDB');
-        return await db.collection('users').findOne({ email: emails });
+        var user = await db.collection('users').findOne({ email: emails });
+        conn.close();
+        return user;
     }
 
     static async register(nomes, emails, senhas) {
@@ -24,6 +26,7 @@ module.exports = class Users {
             admin: "false"
         });
 
+        conn.close();
         return true;
     }
 }

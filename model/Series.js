@@ -2,18 +2,19 @@ const { MongoClient } = require('mongodb');
 const uri = require('../config/db');
 
 module.exports = class Series {
-    static async find(nome) {
+    static async find(nomes) {
         const conn = await MongoClient.connect(uri.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
         const db = conn.db('discordDB');
+        var users;
 
-        if (nome.length > 2) {
-            var all = await db.collection('series').find().toArray();
-            var users = all.filter(function(item) {
-                return item.nome.toLowerCase().includes(nome.toLowerCase());
-            });
+        if (nomes.length > 2) {
+            users = await db.collection('series').find({ nome: new RegExp(nomes) }).toArray();
+            conn.close();
             return users;
         } else {
-            return await db.collection('series').find().toArray();
+            users = await db.collection('series').find().toArray();
+            conn.close();
+            return users;
         }
     }
 
@@ -21,7 +22,7 @@ module.exports = class Series {
         const conn = await MongoClient.connect(uri.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
         const db = conn.db('discordDB');
 
-        return await db.collection('series').insertOne({
+        await db.collection('series').insertOne({
             nome: nome,
             estreia: estreia,
             site: site,
@@ -33,5 +34,6 @@ module.exports = class Series {
             sinopse: sinopse,
             imagem
         });
+        return conn.close();
     }
 }
