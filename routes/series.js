@@ -3,8 +3,7 @@ var router = express.Router();
 let Series = require('../model/Series');
 
 router.get('/busca', async(req, res) => {
-    // if (req.session.login) {
-    if (1 == 1) {
+    if (req.session.login) {
         var result = await Series.find(req.query.nome);
         return res.status(200).send(result);
     } else {
