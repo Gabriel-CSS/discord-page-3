@@ -180,9 +180,10 @@ btn_sendpost.addEventListener("click", async() => {
                     setTimeout(function() {
                         hideTelaPublicar();
                         limparBusca();
-                        for (let i = 0; i < 8; i++) {
+                        for (let i = 0; i < 9; i++) {
                             document.getElementsByClassName("input-post")[i].value = "";
                         }
+                        document.getElementsByClassName("input-post")[9].files[0] = "";
                         window.location.assign("../#id-busca");
                     }, 4000);
                 }
